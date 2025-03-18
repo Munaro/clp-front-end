@@ -1,8 +1,11 @@
-﻿using Newtonsoft.Json;
+﻿using clp_front_end.src.exceptions;
+using clp_front_end.src.models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -18,7 +21,7 @@ namespace clp_front_end.src.clients
             _client.DefaultRequestHeaders.Accept.Clear();
             _client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
         }
-        private static string GetSuccesMessage(System.Net.HttpStatusCode StatusCode, HttpMethod Method)
+        private static string GetSuccessMessage(System.Net.HttpStatusCode StatusCode, HttpMethod Method)
         {
             if (StatusCode == System.Net.HttpStatusCode.OK)
             {
@@ -46,6 +49,41 @@ namespace clp_front_end.src.clients
             string ErrorMessage = RepsonseMessage.Content.ReadAsStringAsync().Result;
             dynamic JsonResponse = JsonConvert.DeserializeObject(ErrorMessage);
             return JsonResponse?.message ?? $"{(int)RepsonseMessage.StatusCode} - Falha na comunicação!";
-        }        
+        }
+        public static async Task<RestClientResponse<T>> SendRequest<T>(HttpMethod method, string endpoint, object payload = null)
+        {
+            HttpRequestMessage request = new HttpRequestMessage(method, endpoint);
+
+            if (payload != null)
+            {
+                string jsonPayload = JsonConvert.SerializeObject(payload);
+                request.Content = new StringContent(jsonPayload, Encoding.UTF8, "application/json");
+            }
+            try
+            {
+                HttpResponseMessage response = await _client.SendAsync(request);
+                string responseBody = await response.Content.ReadAsStringAsync();
+                if (response.IsSuccessStatusCode)
+                {
+                    string message = GetSuccessMessage(response.StatusCode, method);
+                    return new RestClientResponse<T>
+                    {
+                        StatusCode = response.StatusCode,
+                        Data = !string.IsNullOrWhiteSpace(responseBody) ? JsonConvert.DeserializeObject<T>(responseBody) : default(T),
+                        Message = message
+                    };
+                }
+                else
+                {
+                    string errorMessage = GetErrorMessage(response);
+                    Console.WriteLine("estou aqui - 3");
+                    throw new RestClientException(response.StatusCode, errorMessage);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new RestClientException(System.Net.HttpStatusCode.ServiceUnavailable, "Falha na comunicação!", ex);
+            }
+        }
     }
 }
