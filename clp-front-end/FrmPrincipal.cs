@@ -1,5 +1,6 @@
 ﻿using clp_front_end.src.clients;
 using clp_front_end.src.models;
+using clp_front_end.src.pages;
 using clp_front_end.src.utils;
 using Newtonsoft.Json;
 using System;
@@ -11,7 +12,7 @@ namespace clp_front_end
 {
     public partial class FrmPrincipal : Form
     {
-        private WebSocketClient wsClient;
+        public WebSocketClient wsClient;
         private bool ClpEmulatorIsRunning = false;
         public FrmPrincipal()
         {
@@ -63,7 +64,12 @@ namespace clp_front_end
                     switch (response.Event)
                     {
                         case "clpEmulator":
-                            Console.WriteLine($"{response.Data}");
+                            ClpEmulatorEventModel.Get clpEmulatorData = JsonConvert.DeserializeObject<ClpEmulatorEventModel.Get>(response.Data.ToString());
+                            this.Invoke((MethodInvoker)delegate
+                            {
+                                FrmNewContainer newContainerForm = new FrmNewContainer(clpEmulatorData.origin, clpEmulatorData.receivedDate, clpEmulatorData.weight);
+                                newContainerForm.ShowDialog();
+                            });
                             break;
                     }
                 }

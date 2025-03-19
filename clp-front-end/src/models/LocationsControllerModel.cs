@@ -11,6 +11,8 @@
             public int level { get; set; }
             public int position { get; set; }
             public int maxCapacity { get; set; }
+
+            public string DisplayText => $"Zona: {zone} | Rua: {street} | Coluna: {column} | Nível: {level} | Pos.: {position} | Peso: {maxCapacity}";
         }
     }
 }

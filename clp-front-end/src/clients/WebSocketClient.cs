@@ -131,7 +131,7 @@ namespace clp_front_end.src.clients
             if (client?.State == WebSocketState.Open)
             {
                 globalCts.Cancel();
-                await client.CloseAsync(WebSocketCloseStatus.NormalClosure, "Conexão encerrada", CancellationToken.None);
+                await client.CloseOutputAsync(WebSocketCloseStatus.NormalClosure, "Conexão encerrada", CancellationToken.None);
                 ServiceLogger.Log("Conexão encerrada manualmente.", EventLogEntryType.Information);
             }
         }

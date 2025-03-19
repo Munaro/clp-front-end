@@ -65,11 +65,18 @@
     <Compile Include="src\controllers\LocationsController.cs" />
     <Compile Include="src\controllers\MovementsController.cs" />
     <Compile Include="src\exceptions\RestClientException.cs" />
+    <Compile Include="src\models\ClpEmulatorEventModel.cs" />
     <Compile Include="src\models\ContainersControllerModel.cs" />
     <Compile Include="src\models\LocationsControllerModel.cs" />
     <Compile Include="src\models\MovementsControllerModel.cs" />
     <Compile Include="src\models\RestClientResponse.cs" />
     <Compile Include="src\models\WebSocketResponse.cs" />
+    <Compile Include="src\pages\FrmNewContainer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="src\pages\FrmNewContainer.Designer.cs">
+      <DependentUpon>FrmNewContainer.cs</DependentUpon>
+    </Compile>
     <Compile Include="src\utils\ServiceLogger.cs" />
     <EmbeddedResource Include="FrmPrincipal.resx">
       <DependentUpon>FrmPrincipal.cs</DependentUpon>
@@ -84,6 +91,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="src\pages\FrmNewContainer.resx">
+      <DependentUpon>FrmNewContainer.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

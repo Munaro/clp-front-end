@@ -51,8 +51,7 @@ namespace clp_front_end.src.controllers
         {
             try
             {
-                RestClientResponse<ContainersControllerModel.GetData> response = await RestClient.SendRequest<ContainersControllerModel.GetData>(HttpMethod.Get, "/containers?data=true");
-
+                RestClientResponse<ContainersControllerModel.GetData> response = await RestClient.SendRequest<ContainersControllerModel.GetData>(HttpMethod.Get, "/containers?data=true");                
                 return response.Data;
             }
             catch (RestClientException ex)
