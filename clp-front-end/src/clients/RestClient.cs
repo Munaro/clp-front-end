@@ -44,7 +44,7 @@ namespace clp_front_end.src.clients
         private static string GetErrorMessage(HttpResponseMessage RepsonseMessage)
         {
             string ErrorMessage = RepsonseMessage.Content.ReadAsStringAsync().Result;
-            dynamic JsonResponse = JsonConvert.DeserializeObject(ErrorMessage);
+            dynamic JsonResponse = JsonConvert.DeserializeObject(ErrorMessage);            
             return JsonResponse?.message ?? $"{(int)RepsonseMessage.StatusCode} - Falha na comunicação!";
         }
         public static async Task<RestClientResponse<T>> SendRequest<T>(HttpMethod method, string endpoint, object payload = null)
@@ -72,14 +72,13 @@ namespace clp_front_end.src.clients
                 }
                 else
                 {
-                    string errorMessage = GetErrorMessage(response);
-                    Console.WriteLine("estou aqui - 3");
+                    string errorMessage = GetErrorMessage(response);                    
                     throw new RestClientException(response.StatusCode, errorMessage);
                 }
             }
             catch (Exception ex)
             {
-                throw new RestClientException(System.Net.HttpStatusCode.ServiceUnavailable, "Falha na comunicação!", ex);
+                throw new RestClientException(System.Net.HttpStatusCode.ServiceUnavailable, $"{ex.Message}", ex);
             }
         }
     }

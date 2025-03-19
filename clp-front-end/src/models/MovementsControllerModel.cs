@@ -19,7 +19,7 @@
         public partial class ChangePosition
         {
             public int containerId { get; set; }
-            public int toLocationId { get; set; }
+            public int? toLocationId { get; set; }
         }
     }
 }

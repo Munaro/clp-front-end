@@ -71,6 +71,24 @@
     <Compile Include="src\models\MovementsControllerModel.cs" />
     <Compile Include="src\models\RestClientResponse.cs" />
     <Compile Include="src\models\WebSocketResponse.cs" />
+    <Compile Include="src\pages\query-containers\FrmChangeContainerPosition.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="src\pages\query-containers\FrmChangeContainerPosition.Designer.cs">
+      <DependentUpon>FrmChangeContainerPosition.cs</DependentUpon>
+    </Compile>
+    <Compile Include="src\pages\query-containers\FrmChangeContainerStatus.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="src\pages\query-containers\FrmChangeContainerStatus.Designer.cs">
+      <DependentUpon>FrmChangeContainerStatus.cs</DependentUpon>
+    </Compile>
+    <Compile Include="src\pages\query-containers\FrmConsultaContainer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="src\pages\query-containers\FrmConsultaContainer.Designer.cs">
+      <DependentUpon>FrmConsultaContainer.cs</DependentUpon>
+    </Compile>
     <Compile Include="src\pages\FrmNewContainer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -91,6 +109,15 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="src\pages\query-containers\FrmChangeContainerPosition.resx">
+      <DependentUpon>FrmChangeContainerPosition.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src\pages\query-containers\FrmChangeContainerStatus.resx">
+      <DependentUpon>FrmChangeContainerStatus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src\pages\query-containers\FrmConsultaContainer.resx">
+      <DependentUpon>FrmConsultaContainer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="src\pages\FrmNewContainer.resx">
       <DependentUpon>FrmNewContainer.cs</DependentUpon>
     </EmbeddedResource>
@@ -116,6 +143,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\vrc-opacity-20.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\consulta.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\location-16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\edit-16x16.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

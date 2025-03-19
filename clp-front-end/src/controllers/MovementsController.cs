@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using clp_front_end.src.clients;
 using clp_front_end.src.exceptions;
 using clp_front_end.src.models;
+using Newtonsoft.Json;
 
 namespace clp_front_end.src.controllers
 {
@@ -25,11 +26,11 @@ namespace clp_front_end.src.controllers
         public static async Task ChangePosition(MovementsControllerModel.ChangePosition changePositionParams)
         {
             try
-            {
-                await RestClient.SendRequest<object>(HttpMethod.Post, "/movements", changePositionParams);                
+            {                
+                await RestClient.SendRequest<object>(HttpMethod.Put, "/movements", changePositionParams);                
             }
             catch (RestClientException ex)
-            {
+            {                
                 throw new Exception(ex.Message);
             }
         }

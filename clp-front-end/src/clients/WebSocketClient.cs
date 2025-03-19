@@ -103,8 +103,7 @@ namespace clp_front_end.src.clients
                 }
             }
             catch (Exception ex)
-            {
-                Console.WriteLine($"Mesagem {ex.Message}");
+            {                
                 ServiceLogger.Log($"Falha ao receber mensagem: {ex.Message}", EventLogEntryType.Error);
                 await Reconnect();
             }

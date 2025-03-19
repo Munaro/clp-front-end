@@ -24,7 +24,7 @@
             public int internalId { get; set; }
             public string containerId { get; set; }
             public string receivedDate { get; set; }
-            public int containerWeight { get; set; }
+            public float containerWeight { get; set; }
             public string status { get; set; }
             public string storedZone { get; set; }
             public int storedStreet { get; set; }

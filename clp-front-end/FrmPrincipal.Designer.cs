@@ -30,11 +30,12 @@
         {
             this.groupBoxClpEmulator = new System.Windows.Forms.GroupBox();
             this.labelClpEmulatorStatusConexaoValue = new System.Windows.Forms.Label();
-            this.buttonStartClpEmulator = new System.Windows.Forms.Button();
             this.labelClpEmulatorStatusConexao = new System.Windows.Forms.Label();
+            this.ClpEmulator = new System.ComponentModel.BackgroundWorker();
+            this.buttonConsultaContainer = new System.Windows.Forms.Button();
+            this.buttonStartClpEmulator = new System.Windows.Forms.Button();
             this.buttonEndClpEmulator = new System.Windows.Forms.Button();
             this.backgroundImage = new System.Windows.Forms.PictureBox();
-            this.ClpEmulator = new System.ComponentModel.BackgroundWorker();
             this.groupBoxClpEmulator.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.backgroundImage)).BeginInit();
             this.SuspendLayout();
@@ -64,6 +65,33 @@
             this.labelClpEmulatorStatusConexaoValue.TabIndex = 5;
             this.labelClpEmulatorStatusConexaoValue.Text = "Inativa";
             // 
+            // labelClpEmulatorStatusConexao
+            // 
+            this.labelClpEmulatorStatusConexao.AutoSize = true;
+            this.labelClpEmulatorStatusConexao.Location = new System.Drawing.Point(143, 16);
+            this.labelClpEmulatorStatusConexao.Name = "labelClpEmulatorStatusConexao";
+            this.labelClpEmulatorStatusConexao.Size = new System.Drawing.Size(97, 13);
+            this.labelClpEmulatorStatusConexao.TabIndex = 4;
+            this.labelClpEmulatorStatusConexao.Text = "Status da Conexão";
+            // 
+            // ClpEmulator
+            // 
+            this.ClpEmulator.WorkerSupportsCancellation = true;
+            this.ClpEmulator.DoWork += new System.ComponentModel.DoWorkEventHandler(this.ClpEmulator_DoWork);
+            // 
+            // buttonConsultaContainer
+            // 
+            this.buttonConsultaContainer.Image = global::clp_front_end.Properties.Resources.consulta;
+            this.buttonConsultaContainer.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.buttonConsultaContainer.Location = new System.Drawing.Point(797, 12);
+            this.buttonConsultaContainer.Name = "buttonConsultaContainer";
+            this.buttonConsultaContainer.Size = new System.Drawing.Size(75, 23);
+            this.buttonConsultaContainer.TabIndex = 6;
+            this.buttonConsultaContainer.Text = "Consultar Containers";
+            this.buttonConsultaContainer.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.buttonConsultaContainer.UseVisualStyleBackColor = true;
+            this.buttonConsultaContainer.Click += new System.EventHandler(this.buttonConsultaContainer_Click);
+            // 
             // buttonStartClpEmulator
             // 
             this.buttonStartClpEmulator.Image = global::clp_front_end.Properties.Resources.check_confirm_16x16;
@@ -76,15 +104,6 @@
             this.buttonStartClpEmulator.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.buttonStartClpEmulator.UseVisualStyleBackColor = true;
             this.buttonStartClpEmulator.Click += new System.EventHandler(this.buttonStartClpEmulator_Click);
-            // 
-            // labelClpEmulatorStatusConexao
-            // 
-            this.labelClpEmulatorStatusConexao.AutoSize = true;
-            this.labelClpEmulatorStatusConexao.Location = new System.Drawing.Point(143, 16);
-            this.labelClpEmulatorStatusConexao.Name = "labelClpEmulatorStatusConexao";
-            this.labelClpEmulatorStatusConexao.Size = new System.Drawing.Size(97, 13);
-            this.labelClpEmulatorStatusConexao.TabIndex = 4;
-            this.labelClpEmulatorStatusConexao.Text = "Status da Conexão";
             // 
             // buttonEndClpEmulator
             // 
@@ -109,17 +128,13 @@
             this.backgroundImage.TabIndex = 2;
             this.backgroundImage.TabStop = false;
             // 
-            // ClpEmulator
-            // 
-            this.ClpEmulator.WorkerSupportsCancellation = true;
-            this.ClpEmulator.DoWork += new System.ComponentModel.DoWorkEventHandler(this.ClpEmulator_DoWork);
-            // 
             // FrmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Snow;
             this.ClientSize = new System.Drawing.Size(884, 411);
+            this.Controls.Add(this.buttonConsultaContainer);
             this.Controls.Add(this.groupBoxClpEmulator);
             this.Controls.Add(this.backgroundImage);
             this.MaximizeBox = false;
@@ -144,6 +159,7 @@
         private System.Windows.Forms.GroupBox groupBoxClpEmulator;
         private System.Windows.Forms.PictureBox backgroundImage;
         private System.ComponentModel.BackgroundWorker ClpEmulator;
+        private System.Windows.Forms.Button buttonConsultaContainer;
     }
 }
 

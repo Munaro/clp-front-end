@@ -90,5 +90,10 @@ namespace clp_front_end
                 wsClient = null;
             }
         }
+
+        private void buttonConsultaContainer_Click(object sender, EventArgs e)
+        {
+            new FrmConsultaContainer().ShowDialog();
+        }
     }
 }

@@ -37,12 +37,12 @@ namespace clp_front_end.src.controllers
         {
             try
             {
-                RestClientResponse<ContainersControllerModel.Get[]> response = await RestClient.SendRequest<ContainersControllerModel.Get[]>(HttpMethod.Get, "/containers");
+                RestClientResponse<ContainersControllerModel.Get[]> response = await RestClient.SendRequest<ContainersControllerModel.Get[]>(HttpMethod.Get, "/containers");                
 
                 return response.Data;
             }
             catch (RestClientException ex)
-            {
+            {                
                 throw new Exception(ex.Message);
             }
         }
